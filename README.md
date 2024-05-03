@@ -31,7 +31,7 @@ Please explain your code carefully and write documentation with
 function, click `Code` \> `Insert Roxygen Skeleton`.
 
 Remember to put your name in the `@author` field so we know who’s to
-blame when your function runs wild.
+blame when your function runs wild. For example:
 
 ``` r
 #' @author Thinh Ong \url{https://github.com/thinhong}
