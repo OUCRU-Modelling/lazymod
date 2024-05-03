@@ -18,7 +18,7 @@ plot_ts_stacked_bar(data, varname, time, style = F)
 \value{
 A list contains:
 
-* `data`: A data frame created by `calc_ts_np()` using to plot
+* `data`: A tibble created by `calc_ts_np()`
 
 * `plot`: A ggplot object for the time series stacked bar chart
 }
