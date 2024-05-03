@@ -51,7 +51,7 @@ calc_ts_np <- function(data, varname, time) {
 #' outp <- plot_ts_stacked_bar(data = df, varname = age_class, time = onset_month)
 #' outp$plot
 #' # Add other ggplot elements
-#' outp$plot + ggplot2::theme_minimal()
+#' outp$plot + ggsci::scale_fill_jco() + ggplot2::theme_minimal()
 plot_ts_stacked_bar <- function(data, varname, time, style = F) {
 
   # Compute proportion
