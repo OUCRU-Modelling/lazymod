@@ -44,10 +44,14 @@ A **tsibble** with 2 columns:
 Generate a spatiotemporally aggregated weather variable dataframe based on `stars` object
 }
 \examples{
-#TODO: add real data file for example
-raw_weather_era5 <- read_ncdf("*NetCDF weather data downloaded from ERA5*")
-shp <- read_rds("gadm41_VNM_1_pk.rds") \%>\% terra::unwrap() \%>\% st_as_sf()
+# TODO: add real data file for example
+\dontrun{
+raw_weather_era5 <- stars::read_ncdf("*NetCDF weather data downloaded from ERA5*")
+shp <- read_rds("gadm41_VNM_1_pk.rds") \%>\%
+  terra::unwrap() \%>\%
+  st_as_sf()
 gen_covar_df("t2m", mean, province_shp, subtract, 273.15, raw_weather_era5)
+}
 }
 \author{
 Tuyen Huynh \url{https://github.com/tuyenhn}
