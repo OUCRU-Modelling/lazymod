@@ -19,18 +19,22 @@
 #' @export
 #'
 #' @examples
-#' #TODO: add real data file for example
-#' raw_weather_era5 <- read_ncdf("*NetCDF weather data downloaded from ERA5*")
-#' shp <- read_rds("gadm41_VNM_1_pk.rds") %>% terra::unwrap() %>% st_as_sf()
+#' # TODO: add real data file for example
+#' \dontrun{
+#' raw_weather_era5 <- stars::read_ncdf("*NetCDF weather data downloaded from ERA5*")
+#' shp <- read_rds("gadm41_VNM_1_pk.rds") %>%
+#'   terra::unwrap() %>%
+#'   st_as_sf()
 #' gen_covar_df("t2m", mean, province_shp, subtract, 273.15, raw_weather_era5)
+#' }
 gen_weather_var_df <- function(var_name, agg_fn, temp_agg, shp, trans_fn = identity, ..., date_idx_fn, new_var_name = NULL, dataset) {
   dataset %>%
-    select(all_of(var_name)) %>%
-    stars::aggregate(temp_agg, FUN = agg_fn) %>%
-    stars::aggregate(shp, FUN = agg_fn) %>%
-    as_tibble() %>%
+    dplyr::select(tidyselect::all_of(var_name)) %>%
+    stars::aggregate.stars(temp_agg, FUN = agg_fn) %>%
+    stars::aggregate.stars(shp, FUN = agg_fn) %>%
+    tibble::as_tibble() %>%
     select(all_of(c("time", var_name))) %>%
-    mutate(
+    dplyr::mutate(
       date = date_idx_fn(time),
       !!ifelse(is.null(new_var_name), var_name, new_var_name) := trans_fn(!!rlang::sym(var_name), ...)
     ) %>%
