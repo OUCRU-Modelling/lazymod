@@ -10,11 +10,15 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
+    fs,
     ggplot2,
     ggsci,
     magrittr,
-    sf,
+    readr,
+    rlang,
     stars,
+    stats,
+    stringr,
     tidyr,
     tsibble
 Depends: 
